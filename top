@@ -1,0 +1,277 @@
+[33mcabc837[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m No tsure whihc this one is
+[33m21e0fff[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Cursor Updates
+[33m7fd8f2a[m Refactor authentication for performance
+[33m596469e[m Refactor AI extraction and Xero integration
+[33mb736c59[m[33m ([m[1;33mtag: [m[1;33mGood-workign-copy[m[33m)[m Revert "Code edited in Lovable Code Editor"
+[33m38f91a6[m Code edited in Lovable Code Editor
+[33ma9a48d3[m Fix: Filter page not updated
+[33m9130c88[m Refactor: Merge filter components and improve layout
+[33me330ac6[m Fix AI prompt and parsing
+[33m282fd08[m Fix: Resolve missing variable errors in DevConsole.tsx
+[33m0c03496[m feat: Add test AI extraction button
+[33mb6f123b[m Implement plan to fix timeout issue
+[33mb71e63d[m Feat: Implement auto-extraction loop
+[33m7b55fd6[m Refactor: Optimize AI extract performance
+[33m0bb0f68[m Fix: DevConsole AI results display errors
+[33m9748de3[m Fix: Implement plan for AI extract function
+[33m5c9e77e[m Fix: Implement plan for AI extraction and filtering
+[33m8ad4827[m Remove AI extraction limit and update filter panel
+[33m75e1aa9[m Fix: Restore AI work description extraction
+[33md5731ab[m Run SQL migration
+[33m81fb90c[m Implement AI work description extraction
+[33m4e62a7c[m Add AI extraction prompt enhancements
+[33m9793838[m Fix AI extraction issues
+[33m4932d67[m Add AI-powered extraction
+[33mc58f799[m Fix badge calculation
+[33m10871ee[m Fix: Incorrect badge ranking
+[33mfb22924[m Fix badge calculation
+[33m49d9c23[m Fix: Resolve type error in badge ranking
+[33mb7af605[m Fix: Badges percentage and ranking issues
+[33mb66c9df[m Fix: Differentiate revenue and expenses in badges
+[33md10b07a[m Fix: Incorrect revenue calculation and badge filtering
+[33mb1795e0[m feat: Implement badge filtering
+[33maa680bb[m Refactor: Implement work description filtering
+[33mbee86d9[m[33m ([m[1;33mtag: [m[1;33mBest-version-ever-does-everything[m[33m)[m Fix: Stop import button cycling
+[33med81a14[m feat: Implement auto-extraction on Setup page
+[33mcbc5bbf[m Fix: Clear dashboard data on database clear
+[33m671bf4d[m Implement Xero sync plan
+[33m8201e19[m Remove "Continue Extraction" alert
+[33mb41ba96[m Increase batch size and remove continuation
+[33mad682e8[m Implement auto-loop for work description extraction
+[33m24200f9[m Fix: Implement pagination and error handling for work description extraction
+[33madee8cc[m Code edited in Lovable Code Editor
+[33mac8c0e2[m Fix: DevConsole addLog type errors
+[33mffdf892[m Fix: DevConsole and Index.tsx type errors
+[33m3b1be5c[m Fix: DevConsole and Index component errors
+[33m84e63a7[m feat: Implement extract work description function
+[33mc8bb0fd[m Code edited in Lovable Code Editor
+[33m1e5e70e[m[33m ([m[1;33mtag: [m[1;33mGood-xero-synch-pulls-all-cusotmers-not-line-items[m[33m)[m Code edited in Lovable Code Editor
+[33md0e243f[m Fix: Developer console access after DB clear
+[33m643b4a4[m Code edited in Lovable Code Editor
+[33m5c3cfa8[m Code edited in Lovable Code Editor
+[33m8e3443c[m Code edited in Lovable Code Editor
+[33m98814fd[m Revert "feat: Implement Xero sync plan"
+[33mbe25e30[m feat: Implement Xero sync plan
+[33mbc6e3a1[m Code edited in Lovable Code Editor
+[33m83b86ef[m Apply updated RLS policies
+[33m75186b0[m Apply RLS policies to tables
+[33ma09a809[m Fix: Pass devConsole prop to CSVImport
+[33ma1d8672[m Fix: Incorrect sync message and connection check
+[33m95a2a69[m Fix: Login hangs on loading state
+[33m7928e1b[m Fix: Auth role type error
+[33m4501e65[m Code edited in Lovable Code Editor
+[33m2fdbd44[m Code edited in Lovable Code Editor
+[33md9ea853[m Merge pull request #10 from jammack48/qi6c34-codex/update-supabase-session-handling-and-storage-clearing
+[33m0ad7cae[m[33m ([m[1;31morigin/qi6c34-codex/update-supabase-session-handling-and-storage-clearing[m[33m)[m fix: clear supabase session on retry
+[33m4e977e6[m Merge pull request #8 from jammack48/codex/update-supabase-session-handling-and-storage-clearing
+[33m712690b[m[33m ([m[1;31morigin/codex/update-supabase-session-handling-and-storage-clearing[m[33m)[m fix: clear supabase session on retry
+[33mf16fb7c[m Merge pull request #7 from jammack48/codex/implement-and-integrate-clearsupabaseindexeddb
+[33m36d0d3d[m[33m ([m[1;31morigin/codex/implement-and-integrate-clearsupabaseindexeddb[m[33m)[m Add clearing of Supabase IndexedDB and storage
+[33m6c26f44[m Code edited in Lovable Code Editor
+[33m4c4c46f[m Code edited in Lovable Code Editor
+[33maa5502e[m Code edited in Lovable Code Editor
+[33m34c3f65[m Code edited in Lovable Code Editor
+[33m0665e4b[m Code edited in Lovable Code Editor
+[33ma43b67b[m Merge pull request #6 from jammack48/codex/add-timeout-functionality-to-protectedroute-component
+[33m9063c9e[m[33m ([m[1;31morigin/codex/add-timeout-functionality-to-protectedroute-component[m[33m)[m Add timeout handling to ProtectedRoute
+[33mfbb7d46[m Merge pull request #5 from jammack48/codex/insert-console.log-statements-for-tracing
+[33m5b3ef42[m[33m ([m[1;31morigin/codex/insert-console.log-statements-for-tracing[m[33m)[m Add console logs for debugging app initialization
+[33me04992a[m Code edited in Lovable Code Editor
+[33m5885990[m Fix: Address loading loop issue
+[33me22d531[m Code edited in Lovable Code Editor
+[33m586af15[m Code edited in Lovable Code Editor
+[33m59ff1c2[m Code edited in Lovable Code Editor
+[33m548e5f5[m Fix: Pass onDataImported prop to XeroIntegration
+[33m2a38d2a[m Refactor: Check Xero connection on app startup
+[33m756c349[m Apply RLS policies
+[33md7efe11[m Fix: Resolve loading cycle issue in development
+[33m3eb5878[m Code edited in Lovable Code Editor
+[33m87ce1cd[m Fix: Resolve syntax errors in XeroIntegration.tsx
+[33mbd802d6[m Merge pull request #4 from jammack48/eu1xp4-codex/restructure-sync-logic-and-update-flow
+[33m4795b44[m[33m ([m[1;31morigin/eu1xp4-codex/restructure-sync-logic-and-update-flow[m[33m)[m Merge branch 'main' into eu1xp4-codex/restructure-sync-logic-and-update-flow
+[33mc53178f[m fix: use functional state updates in sync
+[33m55d7ee1[m Fix: Stuck in loading state
+[33m7c64620[m Merge pull request #3 from jammack48/codex/restructure-sync-logic-and-update-flow
+[33m7665b05[m refactor sync to two stages
+[33m5ed8cd4[m Fix: XeroIntegration sync state type error
+[33m50655f4[m Fix: Database clear and loading loop issue
+[33m469536b[m Merge pull request #2 from jammack48/hbdt6n-codex/analyze-code-for-issues-and-improvements
+[33m05c064d[m[33m ([m[1;31morigin/hbdt6n-codex/analyze-code-for-issues-and-improvements[m[33m)[m Merge branch 'main' into hbdt6n-codex/analyze-code-for-issues-and-improvements
+[33m9da5f71[m Fix full invoice import and prevent logout
+[33m6dbe325[m Merge pull request #1 from jammack48/codex/analyze-code-for-issues-and-improvements
+[33me3f296f[m Allow full import in one click
+[33m386cc98[m Merge branch 'main' into codex/analyze-code-for-issues-and-improvements
+[33m221e40d[m Remove invoice page limit
+[33m4bec459[m Code edited in Lovable Code Editor
+[33m7f0cf08[m Fix: Xero connection refresh
+[33mfe07129[m Fix: Xero integration connection check
+[33m95d3b24[m Fix: Resolve Xero sync hanging issue
+[33med17792[m Fix: Edge function broken
+[33m325597c[m Fix: Invoice processing limit
+[33mbb1686b[m Fix: Invalid character errors
+[33mbf716fa[m Fix: Syntax error in XeroIntegration.tsx
+[33m6d61fbb[m Remove batching and limits for template logic
+[33mfd5de0f[m Refactor: Simplify XeroIntegration component
+[33me5b584b[m Fix: AI enhancement broken
+[33mbf99af4[m Fix: Implement AI enhancement plan
+[33mb4ef0e2[m Fix AI enhancement progress and ETA
+[33m8eeaf95[m Fix: Ensure AI enhancement processes all invoices
+[33m6d63562[m Fix: AI enhancement showing 0 of 0
+[33m6acc81e[m Implement the plan
+[33mb94432f[m Refactor XeroIntegration component
+[33m7095060[m Fix hanging issue
+[33m0f2d6ec[m Fix AI enhancement function
+[33md53d4ff[m Fix: Automatic batch processing not working
+[33m12118bf[m Fix automatic batch processing
+[33md694d50[m Fix: AI enhancement stuck in loop
+[33mbc120ee[m Refactor: Address user's credit concerns
+[33m40408bb[m Fix: AI enhancement failures
+[33md8e55fe[m Fix AI enhancement state update
+[33m597d0af[m Implement XeroIntegration plan
+[33m1f6f8b5[m Fix: Type assertion for Supabase function responses
+[33m8d4db9e[m Fix TypeScript errors in XeroIntegration
+[33mee63762[m Implement AI enhancement plan
+[33me262f3b[m Fix: Implement AI enhancement plan
+[33m6d343e0[m Fix: Access supabaseUrl property
+[33m7bfe863[m Implement plan to debug and fix AI enhancement
+[33m3d9b5db[m Fix AI enhancement filtering
+[33m48154e8[m Fix: Xero connection check on load
+[33md5943a0[m[33m ([m[1;33mtag: [m[1;33mGood-version-dashbaoard-shows-all-cusomers-and-invocies[m[33m)[m Fix: Customer type mismatch in fetchCustomers
+[33m76a3ab4[m feat: Implement pagination and AI fixes
+[33m1184731[m Fix data limits, filter logic, and AI.
+[33mb841082[m Fix: Implement plan to address issues
+[33m67d4e1d[m Fix: Remove data limits and address AI enhancement failure
+[33m8451f15[m Apply user role change
+[33mef19e78[m Apply user role update SQL
+[33m3774f5b[m Fix: Implement plan to address timeout and logging
+[33m34ae51e[m Fix: Database clearing not working correctly
+[33m14a0fbb[m Refactor: Separate Xero sync and AI enhancement
+[33m10219e6[m Remove data import restrictions
+[33maf8c5ee[m Fix: InvoiceDetailModal JSX errors
+[33m91933aa[m Refactor: Implement lazy loading for line items
+[33mec8a9a8[m[33m ([m[1;33mtag: [m[1;33mPerfect-version[m[33m)[m Refactor: Rename "Show Raw Data" to "Show Line Items"
+[33m8de556b[m Refactor: Rename invoice display elements
+[33mb2ea6eb[m Fix AI enhancement and display issues
+[33md144f0b[m Fix: Implement tab and message changes
+[33m82f4c94[m Reverted to commit c4a46aa9d1b9f2e13b17ffa6d9f2f8fd97434b2e
+[33ma68e057[m Fix FilterPanel and restore functionality
+[33m05b3e79[m Reverted to commit b21fde74d0773359fbebc221bd3be668bf6abbae
+[33mcd0a3e9[m Fix: FilterPanel type mismatch
+[33mb21fde7[m Fix type errors and component issues
+[33m6b9db53[m Fix: Xero sync loop
+[33mc4a46aa[m Fix Xero sync and clean up functions
+[33m5b5e731[m Fix: Use correct log method
+[33m29f7a5f[m Fix: Xero sync stuck, database empty
+[33m6b49416[m Fix: Database clear hangs or only clears invoices
+[33mefb3897[m Implement Xero sync plan
+[33m2f1fa42[m Fix: Improve Xero data import process
+[33mbb2648f[m Fix: Xero import stuck
+[33ma4f689b[m Fix invoice import and AI enhancement
+[33m1c91073[m Fix: Xero sync stuck on fast bulk import
+[33me6e9849[m Implement two-phase import strategy
+[33m357a28c[m Implement real-time progress updates
+[33m34458f6[m Fix: Improve AI sync and progress reporting
+[33m1d8aeab[m Implement AI-powered filtering
+[33m6e7ab3e[m Fix: Implement ultra-selective filtering
+[33m54212d0[m Implement simplified work description extraction
+[33md76dd58[m Fix sync issues and add progress logging
+[33m5db2965[m Fix sync and UI display issues
+[33m3767d83[m Fix Xero connection detection
+[33mede12d6[m Fix: Implement complete fresh start plan
+[33mb8a728d[m Fix: Xero connection state management
+[33mba13b20[m Run SQL migration
+[33m7c4dedb[m Reverted to commit a58765946fde2615a95d234f2aa206d5fa37e3ff
+[33m810c89d[m Fix: Improve Xero sync and work description display
+[33m613a24b[m Refactor: Implement work description fix
+[33mb4f5098[m Fix: Improve work description extraction
+[33m0449855[m Implement plan to fix work description
+[33m930c606[m Fix: Remove line_items from JobSearchModal
+[33ma587659[m Run SQL migration
+[33m1371bf4[m Fix: Implement console warning resolutions
+[33m4e10638[m Fix type errors after column removal
+[33m1629c9f[m Run SQL migration
+[33m97b2e34[m Limit customer data and optimize
+[33mc7f9008[m Fix: Render objects as React children
+[33m272bb28[m Fix Xero sync error
+[33m78abbc7[m Run SQL migration for token storage
+[33m34f62b7[m Refactor: Implement Xero-focused CRM
+[33meb24e9d[m Fix DevConsole Supabase query
+[33mb0c2372[m Fix TypeScript errors and data inconsistencies
+[33mc49d62f[m Fix: FailedJobsModal import error
+[33m758929d[m Fix type errors and missing properties
+[33mbada307[m Run SQL to create Xero-specific tables
+[33mc23bd1b[m Extend Xero sync to pull invoice data
+[33mf402dea[m Implement Xero sync plan
+[33mb868101[m Refactor: Implement Xero sync plan
+[33maf1f43f[m Fix: Xero callback communication
+[33m0fd55c3[m Fix: Implement Xero OAuth callback
+[33md41624e[m Fix Xero connection
+[33mdce1d3e[m Revert: Test Xero integration
+[33m00152b9[m Fix caching issues
+[33m560b0b3[m Reverted to commit 809a4d5d60b7284716eff98e88b6ac4daf7d3c5f
+[33m47278cc[m Connect to Supabase project
+[33mcd31f3d[m Fix: Edge function fetch failure
+[33m809a4d5[m Disable service worker
+[33m26193a0[m Fix Xero integration test
+[33maf82a51[m Fix:
+[33m0f40d9e[m Fix: CORS error in Xero auth
+[33m52c4c56[m Fix: Incorrect logging calls
+[33med1d83f[m Add detailed logging to Xero integration
+[33m1897b0d[m Fix: Xero connection CORS issue
+[33m5998888[m Reverted to commit a00c953b0c7b37c65d2df6500fce104c9cf22f8f
+[33m12c1c16[m Reverted to commit 05c03ab3a7cae6e00eb7e609041f23c3f06cc74e
+[33ma00c953[m Fix: App not loading on dev page
+[33m75bfc76[m Fix: Loading cycle issue
+[33m3d0948f[m Fix: Address console warnings
+[33m81f1afc[m Fix preload warnings and errors.
+[33m0462855[m Fix: Resolve infinite loading loop
+[33m53abd86[m Add clear database button and import tab
+[33mc9d68dd[m feat: Add import tab for data import
+[33m2318fb2[m Fix:
+[33meb7c7eb[m Fix: Prepopulate login details and focus password
+[33m1dbf0be[m Fix: ImportPanel component errors
+[33mf115380[m Add Xero integration to customer page
+[33m05c03ab[m Bypass login screen for prototyping
+[33m1922f1d[m Add basic edge function template
+[33mb733212[m Fix: Show all edge functions
+[33mef7e3ff[m Fix: Implement security hardening measures
+[33ma65bf0f[m feat: Implement Xero integration plan
+[33m10c92d4[m Adjust Kyron image position
+[33m60818a0[m Fix: Kyron image whitespace
+[33m6f61a7f[m Fix: Resolve publishing warnings
+[33m7f9dba4[m Fix: Login screen image display
+[33m8c8b691[m Refactor: Use full-size images in login.
+[33ma644a78[m Add login screen avatars
+[33ma56d3d6[m Remove login code display
+[33mc4acdef[m Add Kyron's Badges tab
+[33mf9aa3b1[m Fix: Improve customer data mapping
+[33mb5825a0[m Fix: Data loss during import
+[33m2539682[m Fix: Display contact information
+[33m71892e6[m Fix: Resolve 'profile' property error
+[33mff80b81[m Refactor: Remove Supabase auth dependency
+[33m2f11932[m Run SQL for user profiles
+[33m10d0d5a[m Fix: Customer card contact details and job history
+[33m52cea34[m Fix: Customer detail modal display issues
+[33m57149a6[m Add AI job search export to CSV
+[33md941523[m Fix: Dashboard not updating after matching
+[33me645a8b[m Fix: Resolve TS2339 error in Index.tsx
+[33me9a294c[m Update dashboard and add export CSV
+[33mfca3029[m Fix: Incorrect customer name parsing
+[33m86b38b5[m feat: Enhance developer console and import panel
+[33m8aa07ba[m Code edited in Lovable Code Editor
+[33mae2f3d3[m Fix: Hardcode OpenAI API key
+[33mfe6d12e[m Fix: ImportPanel missing AlertCircle import
+[33m92c5a38[m Fix: AI key and console logging
+[33mc8eacbf[m Fix: Resolve import error in ImportProgress
+[33me905f73[m Fix: Add papaparse dependency
+[33m0d008b3[m Fix: Resolve import and prop type errors
+[33mc14f6d6[m Fix: Unterminated regex in importService.ts
+[33mec08782[m Refactor: Simplify import process
+[33m18eb58f[m Code edited in Lovable Code Editor
+[33m2fd6ad9[m Code edited in Lovable Code Editor
+[33mceb0db7[m Code edited in Lovable Code Editor
+[33mf100601[m Code edited in Lovable Code Editor
+[33m258ad2d[m Code edited in Lovable Code Editor
+[33mb5819d8[m Refactor: Implement direct, fuzzy, and AI matching
+[33md0650cd[m Code edited in Lovable Code Editor
+[33m1546452[m Refactor: Simplify customer matching and add console logging
