@@ -26,6 +26,7 @@ export interface Customer {
   account_number?: string;
   legal_name?: string;
   company_number?: string;
+  google_review_given?: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -102,22 +103,29 @@ export interface XeroSyncResponse {
 
 export interface BankTransaction {
   id: string;
-  xero_bank_transaction_id: string;
+  user_id: string | null;
+  xero_bank_transaction_id: string | null;
   xero_contact_id: string | null;
   xero_bank_account_id: string | null;
   bank_account_name: string | null;
-  bank_account_code: string | null;
-  transaction_type: string | null; // RECEIVE or SPEND
-  status: string | null;
+  bank_account_code: string | null;  
+  bank_account_id: string | null;
+  transaction_id: string | null;
   transaction_date: string | null;
-  total_amount: number;
-  sub_total: number;
-  total_tax: number;
-  particulars: string | null;
-  code: string | null;
+  date: string | null;
+  amount: number | null;
+  gross_amount: number | null;
+  net_amount: number | null;
+  tax_amount: number | null;
+  description: string | null;
   reference: string | null;
-  is_reconciled: boolean;
-  line_items: any; // Changed from any[] to any to match Supabase Json type
+  type: string | null;
+  sub_type: string | null;
+  status: string | null;
+  currency_code: string | null;
+  currency_rate: number | null;
+  tax_type: string | null;
+  is_reconciled: boolean | null;
   created_at: string;
   updated_at: string;
 }

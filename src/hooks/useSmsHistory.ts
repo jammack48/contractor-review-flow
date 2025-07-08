@@ -9,7 +9,13 @@ export interface SmsLog {
   invoice_id: string | null;
   phone_number: string;
   message: string;
+  message_content: string | null;
   status: 'sent' | 'delivered' | 'failed' | 'unknown';
+  delivery_status: string | null;
+  customer_name: string | null;
+  delivery_timestamp: string | null;
+  campaign_id: string | null;
+  error_message: string | null;
   sent_at: string;
   created_at: string;
 }

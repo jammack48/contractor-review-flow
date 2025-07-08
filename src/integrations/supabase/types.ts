@@ -17,39 +17,87 @@ export type Database = {
       bank_transactions: {
         Row: {
           amount: number | null
+          bank_account_code: string | null
           bank_account_id: string | null
+          bank_account_name: string | null
           created_at: string | null
+          currency_code: string | null
+          currency_rate: number | null
           date: string | null
           description: string | null
+          gross_amount: number | null
           id: string
+          is_reconciled: boolean | null
+          net_amount: number | null
+          reference: string | null
+          status: string | null
+          sub_type: string | null
+          tax_amount: number | null
+          tax_type: string | null
+          transaction_date: string | null
           transaction_id: string | null
           type: string | null
           updated_at: string | null
           user_id: string | null
+          xero_bank_account_id: string | null
+          xero_bank_transaction_id: string | null
+          xero_contact_id: string | null
         }
         Insert: {
           amount?: number | null
+          bank_account_code?: string | null
           bank_account_id?: string | null
+          bank_account_name?: string | null
           created_at?: string | null
+          currency_code?: string | null
+          currency_rate?: number | null
           date?: string | null
           description?: string | null
+          gross_amount?: number | null
           id?: string
+          is_reconciled?: boolean | null
+          net_amount?: number | null
+          reference?: string | null
+          status?: string | null
+          sub_type?: string | null
+          tax_amount?: number | null
+          tax_type?: string | null
+          transaction_date?: string | null
           transaction_id?: string | null
           type?: string | null
           updated_at?: string | null
           user_id?: string | null
+          xero_bank_account_id?: string | null
+          xero_bank_transaction_id?: string | null
+          xero_contact_id?: string | null
         }
         Update: {
           amount?: number | null
+          bank_account_code?: string | null
           bank_account_id?: string | null
+          bank_account_name?: string | null
           created_at?: string | null
+          currency_code?: string | null
+          currency_rate?: number | null
           date?: string | null
           description?: string | null
+          gross_amount?: number | null
           id?: string
+          is_reconciled?: boolean | null
+          net_amount?: number | null
+          reference?: string | null
+          status?: string | null
+          sub_type?: string | null
+          tax_amount?: number | null
+          tax_type?: string | null
+          transaction_date?: string | null
           transaction_id?: string | null
           type?: string | null
           updated_at?: string | null
           user_id?: string | null
+          xero_bank_account_id?: string | null
+          xero_bank_transaction_id?: string | null
+          xero_contact_id?: string | null
         }
         Relationships: []
       }
@@ -60,6 +108,7 @@ export type Database = {
           contact_persons: Json | null
           created_at: string | null
           email_address: string | null
+          google_review_given: boolean | null
           id: string
           name: string
           phone_numbers: Json | null
@@ -75,6 +124,7 @@ export type Database = {
           contact_persons?: Json | null
           created_at?: string | null
           email_address?: string | null
+          google_review_given?: boolean | null
           id?: string
           name: string
           phone_numbers?: Json | null
@@ -90,6 +140,7 @@ export type Database = {
           contact_persons?: Json | null
           created_at?: string | null
           email_address?: string | null
+          google_review_given?: boolean | null
           id?: string
           name?: string
           phone_numbers?: Json | null
@@ -211,30 +262,48 @@ export type Database = {
       }
       sms_history: {
         Row: {
+          campaign_id: string | null
           created_at: string | null
+          customer_name: string | null
+          delivery_status: string | null
+          delivery_timestamp: string | null
+          error_message: string | null
           id: string
           invoice_id: string | null
           message: string
+          message_content: string | null
           phone_number: string
           sent_at: string | null
           status: string | null
           user_id: string | null
         }
         Insert: {
+          campaign_id?: string | null
           created_at?: string | null
+          customer_name?: string | null
+          delivery_status?: string | null
+          delivery_timestamp?: string | null
+          error_message?: string | null
           id?: string
           invoice_id?: string | null
           message: string
+          message_content?: string | null
           phone_number: string
           sent_at?: string | null
           status?: string | null
           user_id?: string | null
         }
         Update: {
+          campaign_id?: string | null
           created_at?: string | null
+          customer_name?: string | null
+          delivery_status?: string | null
+          delivery_timestamp?: string | null
+          error_message?: string | null
           id?: string
           invoice_id?: string | null
           message?: string
+          message_content?: string | null
           phone_number?: string
           sent_at?: string | null
           status?: string | null
