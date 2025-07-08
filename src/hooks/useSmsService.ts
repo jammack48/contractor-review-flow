@@ -18,16 +18,13 @@ interface SendSmsResponse {
   results: SendSmsResult[];
 }
 
-// Improved helper function to safely extract phone number from phone array
+// Helper function to extract phone number from phone array
 export const extractPhoneNumber = (phoneData: any): string => {
   if (!phoneData) return '';
   
-  // If it's already a string, return it
   if (typeof phoneData === 'string') return phoneData;
   
-  // If it's an array of phone objects
   if (Array.isArray(phoneData)) {
-    // First, try to find a mobile number with a non-empty PhoneNumber
     for (const phone of phoneData) {
       if (phone && typeof phone === 'object' && 
           phone.PhoneType === 'MOBILE' && 
@@ -37,7 +34,6 @@ export const extractPhoneNumber = (phoneData: any): string => {
       }
     }
     
-    // If no mobile found, look for any non-empty phone number
     for (const phone of phoneData) {
       if (phone && typeof phone === 'object' && 
           phone.PhoneNumber && 
@@ -47,7 +43,6 @@ export const extractPhoneNumber = (phoneData: any): string => {
     }
   }
   
-  // If it's a single object, try to extract the phone number
   if (typeof phoneData === 'object') {
     return phoneData.PhoneNumber || phoneData.phoneNumber || '';
   }
@@ -59,22 +54,24 @@ export const useSmsService = () => {
   const [isSending, setIsSending] = useState(false);
   const [sendResults, setSendResults] = useState<SendSmsResponse | null>(null);
 
-  const sendSms = async (
+  const sendBulkSms = async (
     message: string, 
-    recipients: string[], 
-    invoiceIds: string[] = [], 
-    customerNames: string[] = []
+    recipients: { phone: string; name: string; invoiceId: string }[]
   ) => {
     setIsSending(true);
     setSendResults(null);
     
     try {
-      console.log('SMS Service: Sending SMS to recipients:', recipients);
+      const phoneNumbers = recipients.map(r => r.phone);
+      const customerNames = recipients.map(r => r.name);
+      const invoiceIds = recipients.map(r => r.invoiceId);
+      
+      console.log('SMS Service: Sending bulk SMS to recipients:', phoneNumbers);
       
       const { data, error } = await supabase.functions.invoke('sms-send', {
         body: {
           message,
-          recipients,
+          recipients: phoneNumbers,
           invoiceIds,
           customerNames
         }
@@ -120,25 +117,9 @@ export const useSmsService = () => {
     }
   };
 
-  const sendTestSms = async (message: string, phoneNumber: string) => {
-    return sendSms(message, [phoneNumber]);
-  };
-
-  const sendBulkSms = async (
-    message: string, 
-    recipients: { phone: string; name: string; invoiceId: string }[]
-  ) => {
-    const phoneNumbers = recipients.map(r => r.phone);
-    const customerNames = recipients.map(r => r.name);
-    const invoiceIds = recipients.map(r => r.invoiceId);
-    
-    return sendSms(message, phoneNumbers, invoiceIds, customerNames);
-  };
-
   return {
     isSending,
     sendResults,
-    sendTestSms,
     sendBulkSms,
     setSendResults
   };

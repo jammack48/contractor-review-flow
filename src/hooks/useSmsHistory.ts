@@ -1,7 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/hooks/use-toast';
 
 export interface SmsLog {
   id: string;
@@ -24,7 +24,6 @@ export interface SmsLog {
 export const useSmsHistory = () => {
   const [recentSmsMap, setRecentSmsMap] = useState<Map<string, SmsLog>>(new Map());
 
-  // Fetch SMS logs
   const {
     data: smsLogs = [],
     isLoading,
@@ -46,10 +45,9 @@ export const useSmsHistory = () => {
 
       return data as SmsLog[];
     },
-    refetchInterval: 30000, // Refetch every 30 seconds to check for delivery updates
+    refetchInterval: 30000,
   });
 
-  // Build map of recent SMS (within 7 days) by invoice ID
   useEffect(() => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
@@ -58,7 +56,6 @@ export const useSmsHistory = () => {
     
     smsLogs.forEach(log => {
       if (log.invoice_id && new Date(log.sent_at) >= sevenDaysAgo) {
-        // Keep the most recent SMS for each invoice
         const existing = recentMap.get(log.invoice_id);
         if (!existing || new Date(log.sent_at) > new Date(existing.sent_at)) {
           recentMap.set(log.invoice_id, log);
@@ -69,17 +66,14 @@ export const useSmsHistory = () => {
     setRecentSmsMap(recentMap);
   }, [smsLogs]);
 
-  // Check if an invoice has been texted recently (within 7 days)
   const hasRecentSms = (invoiceId: string): boolean => {
     return recentSmsMap.has(invoiceId);
   };
 
-  // Get the most recent SMS for an invoice
   const getRecentSms = (invoiceId: string): SmsLog | undefined => {
     return recentSmsMap.get(invoiceId);
   };
 
-  // Check if customer has been texted for this phone number recently
   const hasRecentSmsForPhone = (phoneNumber: string): boolean => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
@@ -90,7 +84,6 @@ export const useSmsHistory = () => {
     );
   };
 
-  // Get delivery status color
   const getDeliveryStatusColor = (status: string): string => {
     switch (status) {
       case 'delivered':
@@ -104,7 +97,6 @@ export const useSmsHistory = () => {
     }
   };
 
-  // Get delivery status badge color
   const getDeliveryStatusBadge = (status: string): string => {
     switch (status) {
       case 'delivered':

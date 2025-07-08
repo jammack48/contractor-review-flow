@@ -1,53 +1,27 @@
 
+// Demo mode configuration for Review Rocket
+// This allows the app to work with sample data when no backend is connected
+
+const DEMO_MODE_KEY = 'reviewRocket_demoMode';
+
 export const isDemoMode = (): boolean => {
-  // Check URL parameter first
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('demo') === 'true') {
-    return true;
+  // Check if demo mode is explicitly set
+  const stored = localStorage.getItem(DEMO_MODE_KEY);
+  if (stored !== null) {
+    return stored === 'true';
   }
   
-  // Check localStorage
-  const demoFlag = localStorage.getItem('demo-mode');
-  if (demoFlag === 'true') {
-    return true;
-  }
-  
-  // Remove hostname detection to prevent accidental demo mode
+  // Default to false for production Review Rocket app
   return false;
 };
 
 export const setDemoMode = (enabled: boolean): void => {
-  localStorage.setItem('demo-mode', enabled.toString());
-  
-  // Update URL parameter
-  const url = new URL(window.location.href);
-  if (enabled) {
-    url.searchParams.set('demo', 'true');
-  } else {
-    url.searchParams.delete('demo');
-  }
-  window.history.replaceState({}, '', url.toString());
+  localStorage.setItem(DEMO_MODE_KEY, enabled.toString());
+  console.log(`🎭 Demo mode ${enabled ? 'enabled' : 'disabled'}`);
 };
 
-export const exitDemoMode = (): void => {
-  localStorage.removeItem('demo-mode');
-  const url = new URL(window.location.href);
-  url.searchParams.delete('demo');
-  window.history.replaceState({}, '', url.toString());
-  window.location.reload();
-};
-
-export const activateDemoMode = (): void => {
-  console.log('[DemoConfig] Activating demo mode...');
-  
-  // Set both localStorage and URL parameter
-  localStorage.setItem('demo-mode', 'true');
-  
-  // Update URL without triggering a page reload
-  const url = new URL(window.location.href);
-  url.searchParams.set('demo', 'true');
-  window.history.replaceState({}, '', url.toString());
-  
-  // Force a page reload to ensure demo mode is properly activated
-  window.location.reload();
+export const toggleDemoMode = (): boolean => {
+  const newMode = !isDemoMode();
+  setDemoMode(newMode);
+  return newMode;
 };

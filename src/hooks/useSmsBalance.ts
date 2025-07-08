@@ -30,12 +30,6 @@ export const useSmsBalance = () => {
 
       console.log('SMS Balance Response:', data);
       
-      // Validate the response data
-      if (!data || typeof data.credits === 'undefined') {
-        throw new Error('Invalid response format from SMS balance service');
-      }
-
-      // Ensure all numeric values are properly defined
       const validatedBalance: SmsBalance = {
         credits: Number(data.credits) || 0,
         cost_per_text: Number(data.cost_per_text) || 0,

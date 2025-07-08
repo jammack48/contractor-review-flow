@@ -20,7 +20,6 @@ export const useSmsTemplates = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
-  // Load template on mount
   useEffect(() => {
     if (user?.id) {
       loadTemplate();
@@ -34,7 +33,7 @@ export const useSmsTemplates = () => {
     try {
       const { data, error } = await supabase
         .from('sms_templates')
-        .select('id, user_id, template_name, message_content, phone_number, created_at, updated_at')
+        .select('*')
         .eq('user_id', user.id)
         .eq('template_name', 'review_request')
         .maybeSingle();
@@ -68,7 +67,6 @@ export const useSmsTemplates = () => {
     setIsSaving(true);
     try {
       if (template) {
-        // Update existing template
         const { data, error } = await supabase
           .from('sms_templates')
           .update({ 
@@ -77,7 +75,7 @@ export const useSmsTemplates = () => {
             updated_at: new Date().toISOString()
           })
           .eq('id', template.id)
-          .select('id, user_id, template_name, message_content, phone_number, created_at, updated_at')
+          .select()
           .single();
 
         if (error) throw error;
@@ -88,7 +86,6 @@ export const useSmsTemplates = () => {
           description: "Message template updated successfully",
         });
       } else {
-        // Create new template
         const { data, error } = await supabase
           .from('sms_templates')
           .insert({
@@ -97,7 +94,7 @@ export const useSmsTemplates = () => {
             message_content: messageContent,
             phone_number: phoneNumber
           })
-          .select('id, user_id, template_name, message_content, phone_number, created_at, updated_at')
+          .select()
           .single();
 
         if (error) throw error;
