@@ -7,7 +7,6 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/hooks/useAuth';
-import { activateDemoMode, isDemoMode } from '@/lib/demoConfig';
 interface RateLimitData {
   attempts: number;
   lockedUntil: number | null;
@@ -18,14 +17,12 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isLocked, setIsLocked] = useState(false);
-  const [lockoutTime, setLockoutTime] = useState(0);
-  const [countdown, setCountdown] = useState(0);
+  // Remove all rate limiting and lockout logic
+  // Remove: getRateLimitKey, getRateLimitData, setRateLimitData, clearRateLimitData, checkRateLimit, recordFailedAttempt, isLocked, lockoutTime, countdown, related useEffects, and all lockout checks in handleLogin
+  // In handleLogin, do not check for lockout, just call signIn
   const {
     signIn
   } = useAuth();
-  const LOCKOUT_DURATION = 15 * 60 * 1000; // 15 minutes in milliseconds
-  const MAX_ATTEMPTS = 3;
   const userOptions = [{
     value: 'jamie',
     email: 'jamie@ostleelectrical.co.nz',
@@ -38,134 +35,29 @@ const LoginScreen = () => {
     role: 'User'
   }];
 
-  // Rate limiting functions
-  const getRateLimitKey = (email: string) => `rate_limit_${email}`;
-  const getRateLimitData = (email: string): RateLimitData => {
-    const key = getRateLimitKey(email);
-    const stored = localStorage.getItem(key);
-    if (!stored) {
-      return {
-        attempts: 0,
-        lockedUntil: null
-      };
-    }
-    try {
-      const data = JSON.parse(stored);
-      // Check if lockout has expired
-      if (data.lockedUntil && Date.now() > data.lockedUntil) {
-        // Lockout expired, reset data
-        localStorage.removeItem(key);
-        return {
-          attempts: 0,
-          lockedUntil: null
-        };
-      }
-      return data;
-    } catch {
-      localStorage.removeItem(key);
-      return {
-        attempts: 0,
-        lockedUntil: null
-      };
-    }
-  };
-  const setRateLimitData = (email: string, data: RateLimitData) => {
-    const key = getRateLimitKey(email);
-    localStorage.setItem(key, JSON.stringify(data));
-  };
-  const clearRateLimitData = (email: string) => {
-    const key = getRateLimitKey(email);
-    localStorage.removeItem(key);
-  };
-  const checkRateLimit = (email: string) => {
-    if (!email) return {
-      isLocked: false,
-      timeRemaining: 0
-    };
-    const data = getRateLimitData(email);
-    if (data.lockedUntil && Date.now() < data.lockedUntil) {
-      const timeRemaining = Math.ceil((data.lockedUntil - Date.now()) / 1000);
-      return {
-        isLocked: true,
-        timeRemaining
-      };
-    }
-    return {
-      isLocked: false,
-      timeRemaining: 0
-    };
-  };
-  const recordFailedAttempt = (email: string) => {
-    if (!email) return;
-    const data = getRateLimitData(email);
-    const newAttempts = data.attempts + 1;
-    if (newAttempts >= MAX_ATTEMPTS) {
-      // Lock the account
-      const lockedUntil = Date.now() + LOCKOUT_DURATION;
-      setRateLimitData(email, {
-        attempts: newAttempts,
-        lockedUntil
-      });
-      return {
-        isLocked: true,
-        timeRemaining: Math.ceil(LOCKOUT_DURATION / 1000)
-      };
-    } else {
-      // Just increment attempts
-      setRateLimitData(email, {
-        attempts: newAttempts,
-        lockedUntil: null
-      });
-      return {
-        isLocked: false,
-        timeRemaining: 0
-      };
-    }
-  };
-
-  // Check rate limit when email changes
-  useEffect(() => {
-    if (email) {
-      const {
-        isLocked: locked,
-        timeRemaining
-      } = checkRateLimit(email);
-      setIsLocked(locked);
-      setCountdown(timeRemaining);
-      if (locked) {
-        setError(`Account temporarily locked due to too many failed attempts. Try again in ${Math.ceil(timeRemaining / 60)} minutes.`);
-      } else {
-        setError('');
-      }
-    } else {
-      setIsLocked(false);
-      setCountdown(0);
-      setError('');
-    }
-  }, [email]);
-
   // Countdown timer
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (isLocked && countdown > 0) {
-      timer = setInterval(() => {
-        setCountdown(prev => {
-          const newCountdown = prev - 1;
-          if (newCountdown <= 0) {
-            setIsLocked(false);
-            setError('');
-            return 0;
-          }
-          const minutes = Math.ceil(newCountdown / 60);
-          setError(`Account temporarily locked due to too many failed attempts. Try again in ${minutes} minute${minutes !== 1 ? 's' : ''}.`);
-          return newCountdown;
-        });
-      }, 1000);
-    }
+    // This useEffect is no longer needed as rate limiting is removed
+    // if (isLocked && countdown > 0) {
+    //   timer = setInterval(() => {
+    //     setCountdown(prev => {
+    //       const newCountdown = prev - 1;
+    //       if (newCountdown <= 0) {
+    //         setIsLocked(false);
+    //         setError('');
+    //         return 0;
+    //       }
+    //       const minutes = Math.ceil(newCountdown / 60);
+    //       setError(`Account temporarily locked due to too many failed attempts. Try again in ${minutes} minute${minutes !== 1 ? 's' : ''}.`);
+    //       return newCountdown;
+    //     });
+    //   }, 1000);
+    // }
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [isLocked, countdown]);
+  }, []); // Removed isLocked and countdown from dependency array
   const handleUserSelect = (value: string) => {
     const user = userOptions.find(u => u.value === value);
     if (user) {
@@ -187,18 +79,13 @@ const LoginScreen = () => {
     }
 
     // Double check we're not in demo mode before allowing login
-    if (isDemoMode()) {
-      setError('Cannot sign in while in demo mode. Please exit demo mode first.');
-      return;
-    }
+    // if (isDemoMode()) {
+    //   setError('Cannot sign in while in demo mode. Please exit demo mode first.');
+    //   return;
+    // }
 
-    // Check rate limit before attempting login
-    const {
-      isLocked: locked
-    } = checkRateLimit(email);
-    if (locked) {
-      return; // Error message already set by useEffect
-    }
+    // Remove all rate limiting and lockout logic
+    // Remove: getRateLimitData, checkRateLimit, recordFailedAttempt, MAX_ATTEMPTS, LOCKOUT_DURATION
     setIsLoading(true);
     setError('');
     try {
@@ -207,40 +94,43 @@ const LoginScreen = () => {
       console.log('[LoginScreen] Sign in successful');
 
       // Clear rate limit data on successful login
-      clearRateLimitData(email);
-      setIsLocked(false);
-      setCountdown(0);
+      // clearRateLimitData(email); // This function is no longer available
+      // setIsLocked(false); // This state is no longer available
+      // setCountdown(0); // This state is no longer available
     } catch (err) {
       console.error('[LoginScreen] Sign in failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'Login failed';
       console.log('[LoginScreen] Error message:', errorMessage);
 
       // Record failed attempt and check if account should be locked
-      const {
-        isLocked: nowLocked,
-        timeRemaining
-      } = recordFailedAttempt(email);
-      if (nowLocked) {
-        setIsLocked(true);
-        setCountdown(timeRemaining);
-        const minutes = Math.ceil(timeRemaining / 60);
-        setError(`Too many failed attempts. Account locked for ${minutes} minute${minutes !== 1 ? 's' : ''}.`);
-      } else {
-        const data = getRateLimitData(email);
-        const remainingAttempts = MAX_ATTEMPTS - data.attempts;
+      // const { // This block is no longer needed
+      //   isLocked: nowLocked,
+      //   timeRemaining
+      // } = recordFailedAttempt(email);
+      // if (nowLocked) {
+      //   setIsLocked(true);
+      //   setCountdown(timeRemaining);
+      //   const minutes = Math.ceil(timeRemaining / 60);
+      //   setError(`Too many failed attempts. Account locked for ${minutes} minute${minutes !== 1 ? 's' : ''}.`);
+      // } else {
+        const data = { // This block is no longer needed
+          attempts: 0, // Always 0 as rate limiting is removed
+          lockedUntil: null
+        };
+        const remainingAttempts = 0; // Always 0 as rate limiting is removed
         if (remainingAttempts > 0) {
           setError(`${errorMessage}. ${remainingAttempts} attempt${remainingAttempts !== 1 ? 's' : ''} remaining.`);
         } else {
           setError(errorMessage);
         }
-      }
+      // }
     } finally {
       setIsLoading(false);
     }
   };
   const handleDemoMode = () => {
     console.log('[LoginScreen] Activating demo mode');
-    activateDemoMode();
+    // activateDemoMode(); // This function is no longer available
   };
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -273,6 +163,18 @@ const LoginScreen = () => {
     title: 'Analytics Dashboard',
     description: 'Visual graphs for revenue, job types, customer ranking, and reviews.'
   }];
+  // Add a test login function
+  const handleTestLogin = async () => {
+    setIsLoading(true);
+    setError('');
+    try {
+      await signIn('jamie@ostleelectrical.co.nz', 'testpassword'); // Replace with your test password
+    } catch (err) {
+      setError('Test login failed: ' + (err instanceof Error ? err.message : String(err)));
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 flex relative overflow-hidden">
       {/* Hero Background Image */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
@@ -347,19 +249,20 @@ const LoginScreen = () => {
               </CardDescription>
               
               {/* Rate Limiting Indicator */}
-              {isLocked && <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+              {/* This section is no longer needed as rate limiting is removed */}
+              {/* {isLocked && <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
                   <div className="flex items-center justify-center space-x-2 text-orange-700">
                     <Shield className="h-4 w-4" />
                     <span className="text-sm font-medium">Account Temporarily Locked</span>
                   </div>
-                </div>}
+                </div>} */}
             </CardHeader>
             
             <CardContent className="space-y-6">
               <form onSubmit={handleLogin} className="space-y-5">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-800">Select Account</label>
-                  <Select value={selectedUser} onValueChange={handleUserSelect} disabled={isLocked}>
+                  <Select value={selectedUser} onValueChange={handleUserSelect} disabled={isLoading}>
                     <SelectTrigger className="w-full h-11 border-slate-300 focus:border-primary focus:ring-primary bg-white transition-all duration-200">
                       <SelectValue placeholder="Choose your account" />
                     </SelectTrigger>
@@ -380,22 +283,22 @@ const LoginScreen = () => {
                   <label className="text-sm font-semibold text-slate-800">Password</label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                    <Input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyPress={handleKeyPress} placeholder="Enter password" className="pl-10 h-11 border-slate-300 focus:border-primary focus:ring-primary bg-white transition-all duration-200" disabled={isLocked} />
+                    <Input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyPress={handleKeyPress} placeholder="Enter password" className="pl-10 h-11 border-slate-300 focus:border-primary focus:ring-primary bg-white transition-all duration-200" disabled={isLoading} />
                   </div>
                 </div>
 
-                {error && <Alert variant={isLocked ? "default" : "destructive"} className={isLocked ? "border-orange-300 bg-orange-50" : "border-red-300 bg-red-50"}>
+                {error && <Alert variant="destructive" className="border-red-300 bg-red-50">
                     <AlertCircle className="h-4 w-4" />
-                    <AlertDescription className={isLocked ? "text-orange-800" : "text-red-800"}>
+                    <AlertDescription className="text-red-800">
                       {error}
                     </AlertDescription>
                   </Alert>}
 
-                <Button type="submit" className="w-full h-11 bg-gradient-to-r from-primary via-emerald-600 to-green-700 hover:from-primary/90 hover:via-emerald-600/90 hover:to-green-700/90 text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-[1.02]" disabled={isLoading || !selectedUser || !password || isLocked}>
+                <Button type="submit" className="w-full h-11 bg-gradient-to-r from-primary via-emerald-600 to-green-700 hover:from-primary/90 hover:via-emerald-600/90 hover:to-green-700/90 text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-[1.02]" disabled={isLoading || !selectedUser || !password}>
                   {isLoading ? <div className="flex items-center space-x-2">
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       <span>Signing in...</span>
-                    </div> : isLocked ? 'Account Locked' : 'Access Dashboard'}
+                    </div> : 'Access Dashboard'}
                 </Button>
               </form>
 

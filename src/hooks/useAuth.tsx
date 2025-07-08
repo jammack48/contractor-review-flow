@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-import { isDemoMode } from '@/lib/demoConfig';
 
 interface AuthUser {
   id: string;
@@ -35,11 +34,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     console.log('[AuthProvider] Initializing auth...');
     
     // Check if we're in demo mode - if so, skip all auth
-    if (isDemoMode()) {
-      console.log('[AuthProvider] Demo mode detected - skipping auth initialization');
-      setLoading(false);
-      return;
-    }
+    // Remove all references to isDemoMode and demo mode logic in the component
 
     console.log('[AuthProvider] Live mode - setting up auth listeners');
 
@@ -100,9 +95,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     console.log('[AuthProvider] Attempting sign in for:', email);
     
     // Double check we're not in demo mode
-    if (isDemoMode()) {
-      throw new Error('Cannot sign in while in demo mode');
-    }
+    // Remove all references to isDemoMode and demo mode logic in the component
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,

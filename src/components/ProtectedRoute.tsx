@@ -3,7 +3,6 @@ import React from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import LoginScreen from './LoginScreen';
 import { supabase, projectRef } from '@/integrations/supabase/client';
-import { isDemoMode } from '@/lib/demoConfig';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -17,12 +16,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const { user, loading } = useAuth();
   const [timedOut, setTimedOut] = React.useState(false);
   const [retrying, setRetrying] = React.useState(false);
-
-  // Check if we're in demo mode first - if so, bypass all authentication
-  if (isDemoMode()) {
-    console.log('[ProtectedRoute] Demo mode detected - bypassing authentication');
-    return <>{children}</>;
-  }
 
   React.useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;

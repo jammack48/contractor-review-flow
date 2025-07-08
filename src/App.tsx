@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
-import XeroCallback from "./pages/XeroCallback";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,8 +26,7 @@ const App = () => {
                   <Index />
                 </ProtectedRoute>
               } />
-              <Route path="/xero-callback" element={<XeroCallback />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              {/* Only keep root and not found routes */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
