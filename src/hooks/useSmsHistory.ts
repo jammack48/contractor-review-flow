@@ -7,18 +7,11 @@ export interface SmsLog {
   id: string;
   user_id: string;
   invoice_id: string | null;
-  customer_name: string;
   phone_number: string;
-  message_content: string;
-  campaign_id: string | null;
+  message: string;
+  status: 'sent' | 'delivered' | 'failed' | 'unknown';
   sent_at: string;
-  delivery_status: 'pending' | 'delivered' | 'failed' | 'unknown';
-  delivery_timestamp: string | null;
-  delivery_status_id: number | null;
-  delivery_code: number | null;
-  error_message: string | null;
   created_at: string;
-  updated_at: string;
 }
 
 export const useSmsHistory = () => {
@@ -34,7 +27,7 @@ export const useSmsHistory = () => {
     queryFn: async () => {
       console.log('Fetching SMS logs...');
       const { data, error } = await supabase
-        .from('sms_logs')
+        .from('sms_history')
         .select('*')
         .order('sent_at', { ascending: false });
 
@@ -88,7 +81,7 @@ export const useSmsHistory = () => {
     switch (status) {
       case 'delivered':
         return 'text-green-600';
-      case 'pending':
+      case 'sent':
         return 'text-yellow-600';
       case 'failed':
         return 'text-red-600';
@@ -101,7 +94,7 @@ export const useSmsHistory = () => {
     switch (status) {
       case 'delivered':
         return 'bg-green-100 text-green-800';
-      case 'pending':
+      case 'sent':
         return 'bg-yellow-100 text-yellow-800';
       case 'failed':
         return 'bg-red-100 text-red-800';

@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import type { Customer, Invoice, LineItem } from '@/types/crm';
 

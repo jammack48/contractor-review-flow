@@ -14,7 +14,311 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bank_transactions: {
+        Row: {
+          amount: number | null
+          bank_account_id: string | null
+          created_at: string | null
+          date: string | null
+          description: string | null
+          id: string
+          transaction_id: string | null
+          type: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          amount?: number | null
+          bank_account_id?: string | null
+          created_at?: string | null
+          date?: string | null
+          description?: string | null
+          id?: string
+          transaction_id?: string | null
+          type?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number | null
+          bank_account_id?: string | null
+          created_at?: string | null
+          date?: string | null
+          description?: string | null
+          id?: string
+          transaction_id?: string | null
+          type?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      customers: {
+        Row: {
+          addresses: Json | null
+          contact_groups: Json | null
+          contact_persons: Json | null
+          created_at: string | null
+          email_address: string | null
+          id: string
+          name: string
+          phone_numbers: Json | null
+          purchases_tracking_categories: Json | null
+          sales_tracking_categories: Json | null
+          updated_at: string | null
+          user_id: string | null
+          xero_contact_id: string | null
+        }
+        Insert: {
+          addresses?: Json | null
+          contact_groups?: Json | null
+          contact_persons?: Json | null
+          created_at?: string | null
+          email_address?: string | null
+          id?: string
+          name: string
+          phone_numbers?: Json | null
+          purchases_tracking_categories?: Json | null
+          sales_tracking_categories?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+          xero_contact_id?: string | null
+        }
+        Update: {
+          addresses?: Json | null
+          contact_groups?: Json | null
+          contact_persons?: Json | null
+          created_at?: string | null
+          email_address?: string | null
+          id?: string
+          name?: string
+          phone_numbers?: Json | null
+          purchases_tracking_categories?: Json | null
+          sales_tracking_categories?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+          xero_contact_id?: string | null
+        }
+        Relationships: []
+      }
+      invoices: {
+        Row: {
+          amount_credited: number | null
+          amount_due: number | null
+          amount_paid: number | null
+          created_at: string | null
+          due_date: string | null
+          expected_payment_date: string | null
+          fully_paid_on_date: string | null
+          id: string
+          invoice_date: string | null
+          invoice_number: string | null
+          invoice_status: string | null
+          invoice_type: string | null
+          line_amount_types: string | null
+          line_items: Json | null
+          planned_payment_date: string | null
+          service_keywords: Json | null
+          sub_total: number | null
+          total: number | null
+          total_discount: number | null
+          total_tax: number | null
+          updated_at: string | null
+          user_id: string | null
+          work_description: string | null
+          xero_contact_id: string | null
+          xero_invoice_id: string | null
+        }
+        Insert: {
+          amount_credited?: number | null
+          amount_due?: number | null
+          amount_paid?: number | null
+          created_at?: string | null
+          due_date?: string | null
+          expected_payment_date?: string | null
+          fully_paid_on_date?: string | null
+          id?: string
+          invoice_date?: string | null
+          invoice_number?: string | null
+          invoice_status?: string | null
+          invoice_type?: string | null
+          line_amount_types?: string | null
+          line_items?: Json | null
+          planned_payment_date?: string | null
+          service_keywords?: Json | null
+          sub_total?: number | null
+          total?: number | null
+          total_discount?: number | null
+          total_tax?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+          work_description?: string | null
+          xero_contact_id?: string | null
+          xero_invoice_id?: string | null
+        }
+        Update: {
+          amount_credited?: number | null
+          amount_due?: number | null
+          amount_paid?: number | null
+          created_at?: string | null
+          due_date?: string | null
+          expected_payment_date?: string | null
+          fully_paid_on_date?: string | null
+          id?: string
+          invoice_date?: string | null
+          invoice_number?: string | null
+          invoice_status?: string | null
+          invoice_type?: string | null
+          line_amount_types?: string | null
+          line_items?: Json | null
+          planned_payment_date?: string | null
+          service_keywords?: Json | null
+          sub_total?: number | null
+          total?: number | null
+          total_discount?: number | null
+          total_tax?: number | null
+          updated_at?: string | null
+          user_id?: string | null
+          work_description?: string | null
+          xero_contact_id?: string | null
+          xero_invoice_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: string | null
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+          role?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
+      sms_history: {
+        Row: {
+          created_at: string | null
+          id: string
+          invoice_id: string | null
+          message: string
+          phone_number: string
+          sent_at: string | null
+          status: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          invoice_id?: string | null
+          message: string
+          phone_number: string
+          sent_at?: string | null
+          status?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          invoice_id?: string | null
+          message?: string
+          phone_number?: string
+          sent_at?: string | null
+          status?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sms_history_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sms_templates: {
+        Row: {
+          created_at: string | null
+          id: string
+          message_content: string
+          phone_number: string | null
+          template_name: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          message_content: string
+          phone_number?: string | null
+          template_name: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          message_content?: string
+          phone_number?: string | null
+          template_name?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      xero_connections: {
+        Row: {
+          access_token: string
+          created_at: string | null
+          expires_at: string
+          id: string
+          refresh_expires_at: string
+          refresh_token: string
+          tenant_id: string
+          tenant_name: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          access_token: string
+          created_at?: string | null
+          expires_at: string
+          id?: string
+          refresh_expires_at: string
+          refresh_token: string
+          tenant_id: string
+          tenant_name?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          access_token?: string
+          created_at?: string | null
+          expires_at?: string
+          id?: string
+          refresh_expires_at?: string
+          refresh_token?: string
+          tenant_id?: string
+          tenant_name?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
