@@ -7,7 +7,7 @@ export interface LogEntry {
   level: 'info' | 'warn' | 'error' | 'debug' | 'success';
   message: string;
   data?: any;
-  category?: 'import' | 'ai' | 'database' | 'general' | 'xero' | 'full-ai';
+  category?: 'import' | 'ai' | 'database' | 'general' | 'xero' | 'full-ai' | 'ai-work-desc';
 }
 
 export const useDevConsole = () => {

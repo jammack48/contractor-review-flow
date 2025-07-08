@@ -1,15 +1,12 @@
 
 import React, { useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import XeroIntegration from './XeroIntegration';
 import CSVImport from './CSVImport';
-import { useDevConsole } from '@/hooks/useDevConsole';
 import { getXeroConnection } from '@/lib/xeroConnectionService';
 import type { XeroConnection } from '@/lib/xeroConnectionService';
 
 interface ImportPanelProps {
-  devConsole?: ReturnType<typeof useDevConsole>;
   onDataImported?: () => void;
   xeroConnection: XeroConnection | null;
   isXeroConnected: boolean;
@@ -18,7 +15,6 @@ interface ImportPanelProps {
 }
 
 const ImportPanel: React.FC<ImportPanelProps> = ({ 
-  devConsole, 
   onDataImported,
   xeroConnection,
   isXeroConnected,
@@ -70,7 +66,6 @@ const ImportPanel: React.FC<ImportPanelProps> = ({
           </CardHeader>
           <CardContent>
             <XeroIntegration 
-              devConsole={devConsole} 
               onDataImported={onDataImported}
               xeroConnection={xeroConnection}
               isXeroConnected={isXeroConnected}

@@ -25,3 +25,9 @@ export const toggleDemoMode = (): boolean => {
   setDemoMode(newMode);
   return newMode;
 };
+
+export const activateDemoMode = (): void => {
+  setDemoMode(true);
+  // Reload the page to activate demo mode
+  window.location.reload();
+};

@@ -54,6 +54,59 @@ export const useSmsService = () => {
   const [isSending, setIsSending] = useState(false);
   const [sendResults, setSendResults] = useState<SendSmsResponse | null>(null);
 
+  const sendTestSms = async (message: string, phoneNumber: string) => {
+    setIsSending(true);
+    setSendResults(null);
+    
+    try {
+      console.log('SMS Service: Sending test SMS to:', phoneNumber);
+      
+      const { data, error } = await supabase.functions.invoke('sms-send', {
+        body: {
+          message,
+          recipients: [phoneNumber],
+          isTest: true
+        }
+      });
+      
+      if (error) {
+        console.error('SMS Service Error:', error);
+        throw new Error(error.message || 'Failed to send test SMS');
+      }
+
+      console.log('SMS Service Response:', data);
+      setSendResults(data);
+      
+      if (data?.successful > 0) {
+        toast({
+          title: "Test SMS Sent",
+          description: `Successfully sent test message to ${phoneNumber}`,
+        });
+      } else {
+        toast({
+          title: "Test SMS Failed",
+          description: "Failed to send test message. Check your SMS balance and settings.",
+          variant: "destructive",
+        });
+      }
+      
+      return data;
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to send test SMS';
+      console.error('SMS Service Hook Error:', err);
+      
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+      
+      throw err;
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   const sendBulkSms = async (
     message: string, 
     recipients: { phone: string; name: string; invoiceId: string }[]
@@ -120,6 +173,7 @@ export const useSmsService = () => {
   return {
     isSending,
     sendResults,
+    sendTestSms,
     sendBulkSms,
     setSendResults
   };

@@ -208,7 +208,7 @@ const Reviews: React.FC<ReviewsProps> = ({ customers, invoices }) => {
                 >
                   <Checkbox
                     checked={selectedCustomers.has(customer.id)}
-                    onCheckedChange={(checked) => handleSelectCustomer(customer.id, checked)}
+                    onCheckedChange={(checked) => handleSelectCustomer(customer.id, !!checked)}
                   />
                   
                   <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -260,8 +260,8 @@ const Reviews: React.FC<ReviewsProps> = ({ customers, invoices }) => {
 
       {/* SMS Dialog */}
       <BulkSmsConfirmDialog
-        isOpen={showSmsDialog}
-        onClose={() => setShowSmsDialog(false)}
+        open={showSmsDialog}
+        onOpenChange={setShowSmsDialog}
         selectedCustomers={getSelectedCustomers()}
         onConfirm={() => {
           setShowSmsDialog(false);
