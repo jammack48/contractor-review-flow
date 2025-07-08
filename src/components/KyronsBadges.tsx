@@ -45,12 +45,12 @@ const CustomerBadgeCard: React.FC<{
   sortMetric, 
   totalCustomers 
 }) => {
-  // Calculate bank transaction totals
-  const bankIncomeTransactions = bankTransactions.filter(t => t.transaction_type === 'RECEIVE');
-  const bankExpenseTransactions = bankTransactions.filter(t => t.transaction_type === 'SPEND');
+  // Calculate bank transaction totals - Fixed property names
+  const bankIncomeTransactions = bankTransactions.filter(t => t.type === 'RECEIVE');
+  const bankExpenseTransactions = bankTransactions.filter(t => t.type === 'SPEND');
   
-  const bankIncome = bankIncomeTransactions.reduce((sum, t) => sum + (t.total_amount || 0), 0);
-  const bankExpenses = bankExpenseTransactions.reduce((sum, t) => sum + (t.total_amount || 0), 0);
+  const bankIncome = bankIncomeTransactions.reduce((sum, t) => sum + (t.amount || 0), 0);
+  const bankExpenses = bankExpenseTransactions.reduce((sum, t) => sum + (t.amount || 0), 0);
 
   // Add bank transactions to totals
   const totalIncomeWithBank = customer.totalIncome + bankIncome;
