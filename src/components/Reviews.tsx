@@ -262,7 +262,9 @@ const Reviews: React.FC<ReviewsProps> = ({ customers, invoices }) => {
       <BulkSmsConfirmDialog
         open={showSmsDialog}
         onOpenChange={setShowSmsDialog}
-        selectedCustomers={getSelectedCustomers()}
+        recipientCount={getSelectedCustomers().length}
+        estimatedCost={totalValue * 0.1}
+        currency="NZD"
         onConfirm={() => {
           setShowSmsDialog(false);
           setSelectedCustomers(new Set());

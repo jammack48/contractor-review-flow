@@ -65,13 +65,7 @@ const ImportPanel: React.FC<ImportPanelProps> = ({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <XeroIntegration 
-              onDataImported={onDataImported}
-              xeroConnection={xeroConnection}
-              isXeroConnected={isXeroConnected}
-              isCheckingXeroConnection={isCheckingXeroConnection}
-              onXeroConnectionChange={onXeroConnectionChange}
-            />
+            <XeroIntegration />
           </CardContent>
         </Card>
 

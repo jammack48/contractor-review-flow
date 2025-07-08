@@ -11,6 +11,7 @@ export interface XeroConnection {
   access_token: string;
   refresh_token: string;
   expires_at: string;
+  refresh_expires_at: string;
   created_at: string;
   updated_at: string;
 }
